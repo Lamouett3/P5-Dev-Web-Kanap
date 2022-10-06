@@ -1,33 +1,25 @@
+// Récuperer les données dans l'API HTTP
 const product = fetch("http://localhost:3000/api/products");
-
 // Affiche le tableau
 product.then((response) => {
   console.log(response);
-
+  // retourne les données au format JSON
   const kanapData = response.json();
-
+  // affiche les données sous forme de array
   console.log(kanapData);
   kanapData.then((data) => {
-    // pour mettre en place la variable
     console.log(data);
-    /*
-    const imageData = data[i].imageUrl;
-    // console.log(imageData);
-    const nameData = data[i].name;
-    // console.log(nameData);
-    const descriptionData = data[i].description;
-    //  console.log(descriptionData);
-*/
     // Création de la boucle
     // let i = 0;
     for (let i = 0; i < data.length; i++) {
-      // Création des contenaire
+      // Création des contenaires
       const productImage = document.createElement("img");
       productImage.src = data[i].imageUrl;
       const productName = document.createElement("h3");
       productName.innerText = data[i].name;
       const productDescription = document.createElement("p");
       productDescription.innerText = data[i].description;
+      // Rattache les contenaire entre eux
       const productContainer = document.createElement("article");
       productContainer.appendChild(productImage);
       productContainer.appendChild(productName);
@@ -36,11 +28,6 @@ product.then((response) => {
       const sectionItem = document.querySelector(".items");
       sectionItem.appendChild(productContainer);
     }
-    /*
-    sectionItem.appendChild(productImage);
-    sectionItem.appendChild(productName);
-    sectionItem.appendChild(productDescription);
-    */
   });
 });
 
