@@ -2,13 +2,13 @@
 const product = fetch("http://localhost:3000/api/products");
 // Affiche le tableau
 product.then((response) => {
-  console.log(response);
+  // console.log(response);
   // retourne les données au format JSON
   const kanapData = response.json();
   // affiche les données sous forme de array
-  console.log(kanapData);
+  // console.log(kanapData);
   kanapData.then((data) => {
-    console.log(data);
+    // console.log(data);
     // Création de la boucle
     // let i = 0;
     for (let i = 0; i < data.length; i++) {
