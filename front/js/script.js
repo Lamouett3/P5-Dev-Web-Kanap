@@ -1,6 +1,6 @@
 const product = fetch("http://localhost:3000/api/products");
 
-// affiche le tableau
+// Affiche le tableau
 product.then((response) => {
   console.log(response);
 
@@ -10,32 +10,32 @@ product.then((response) => {
   kanapData.then((data) => {
     // pour mettre en place la variable
     console.log(data);
-
-    let i = 0;
+    /*
     const imageData = data[i].imageUrl;
     // console.log(imageData);
     const nameData = data[i].name;
     // console.log(nameData);
     const descriptionData = data[i].description;
     //  console.log(descriptionData);
+*/
+    // Création de la boucle
+    // let i = 0;
+    for (let i = 0; i < data.length; i++) {
+      // Création des contenaire
+      const productImage = document.createElement("img");
+      productImage.src = data[i].imageUrl;
+      const productName = document.createElement("h3");
+      productName.innerText = data[i].name;
+      const productDescription = document.createElement("p");
+      productDescription.innerText = data[i].description;
+      const productContainer = document.createElement("article");
+      productContainer.appendChild(productImage);
+      productContainer.appendChild(productName);
+      productContainer.appendChild(productDescription);
 
-    /*     // Création de la boucle 
-    for (let i = 0; i < data.length; i++){} */
-
-    // Création des contenaire
-    const productImage = document.createElement("img");
-    productImage.src = data[i].imageUrl;
-    const productName = document.createElement("h3");
-    productName.innerText = data[i].name;
-    const productDescription = document.createElement("p");
-    productDescription.innerText = data[i].description;
-    const productContainer = document.createElement("article");
-    productContainer.appendChild(productImage);
-    productContainer.appendChild(productName);
-    productContainer.appendChild(productDescription);
-
-    const sectionItem = document.querySelector(".items");
-    sectionItem.appendChild(productContainer);
+      const sectionItem = document.querySelector(".items");
+      sectionItem.appendChild(productContainer);
+    }
     /*
     sectionItem.appendChild(productImage);
     sectionItem.appendChild(productName);
