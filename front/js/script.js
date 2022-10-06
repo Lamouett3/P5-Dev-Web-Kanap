@@ -1,31 +1,96 @@
-/*
+const product = fetch("http://localhost:3000/api/products");
 
-PREMIERE METHODE 
-const produits = function (produitsRecuperer) {
-  console.log(produitsRecuperer);
-};
+// affiche le tableau
+product.then((response) => {
+  console.log(response);
 
-fetch("http://localhost:3000/api/products")
-  .then(function (data) {
-    return data.json();
-  })
-  .then(function (produitsRecuperer) {
-    produits(produitsRecuperer);
+  const kanapData = response.json();
+
+  console.log(kanapData);
+  kanapData.then((data) => {
+    // pour mettre en place la variable
+    console.log(data);
+
+    let i = 0;
+    const imageData = data[i].imageUrl;
+    // console.log(imageData);
+    const nameData = data[i].name;
+    // console.log(nameData);
+    const descriptionData = data[i].description;
+    //  console.log(descriptionData);
+
+    /*     // Création de la boucle 
+    for (let i = 0; i < data.length; i++){} */
+
+    // Création des contenaire
+    const productImage = document.createElement("img");
+    productImage.src = data[i].imageUrl;
+    const productName = document.createElement("h3");
+    productName.innerText = data[i].name;
+    const productDescription = document.createElement("p");
+    productDescription.innerText = data[i].description;
+    const productContainer = document.createElement("article");
+    productContainer.appendChild(productImage);
+    productContainer.appendChild(productName);
+    productContainer.appendChild(productDescription);
+
+    const sectionItem = document.querySelector(".items");
+    sectionItem.appendChild(productContainer);
+    /*
+    sectionItem.appendChild(productImage);
+    sectionItem.appendChild(productName);
+    sectionItem.appendChild(productDescription);
+    */
   });
+});
+
+/*  LOCAL STORAGE
+// Transformation des pièces en JSON 
+const kanapIndex = JSON.stringify(kanapData);
+// Stockage des informations dans le localStorage
+window.localStorage.setItem("kanapData", kanapIndex);
+*/
+
+/*  FONCTION
+// Création de la boucle 
+for (let i = 0; i < data[data.length]; i++){
+    // creation des contenaire
+const productImage = document.createElement("img");
+// productImage.src = data[i];
+const productName = document.createElement("h3");
+// productName.innerText = data[i].name;
+const productDescription = document.createElement("p");
+// productDescritpion.innerText = data[i].description;
+const productContainer = document.createElement("article");
+
+const sectionItem = document.querySelector(".items");
+sectionItem.appendChild(productImage);
+sectionItem.appendChild(productName);
+sectionItem.appendChild(productDescription);
+sectionItem.appendChild(productContainer);
+
+}
 */
 /*
+// Création des contenaire
+const productImage = document.createElement("img");
+// productImage.src = reponse[0];
+const productName = document.createElement("h3");
+// productName.innerText = response2[0].name;
+const productDescription = document.createElement("p");
 
-DEUXIEME METHODE
-const produits = fetch("http://localhost:3000/api/products").then(function (
-  produits
-) {
-  return produits.json();
-});
+const productContainer = document.createElement("article");
+
+const sectionItem = document.querySelector(".items");
+sectionItem.appendChild(productImage);
+sectionItem.appendChild(productName);
+sectionItem.appendChild(productDescription);
+sectionItem.appendChild(productContainer);
 */
 
+/*/////////////////////////////////////////////////////////////////V1
 // Récuperation des fichier du DOM
 const produits = fetch("http://localhost:3000/api/products");
-
 produits.then((response) => {
   console.log(response);
 
@@ -46,6 +111,8 @@ produits.then((response) => {
   });
 });
 
+// Création des element conteneur
+
 const imageElement = document.createElement("img"); // Image de l'element
 // imageElement.src = produitsIndex.imageURL;
 
@@ -57,10 +124,50 @@ const descriptionElement = document.createElement("p"); // description de l'elem
 
 const displayProductImage = document.querySelector(".productImage");
 const displayProductName = document.querySelector(".productName");
-const displayProductDescription = document.querySelector(
-  ".productDerscription"
-);
+const displayProductDescription = document.querySelector(".productDescription");
+
+/* Creation de la boucle 
+
+for (let i = 0; i < canape[canape.length]; i++) {
+
+ // Récupération de l'élément du DOM qui accueillera les fiches
+    const sectionItem = document.querySelector(".items");
+
+ // Création d’une balise dédiée à une pièce automobile
+    const blocProduct = document.createElement("article");
+
+// On crée l’élément img.
+    const imageElement = document.createElement("img"); 
+    // imageElement.src = produitsIndex.imageURL;
+ // On crée l’élément titres.
+    const nameElement = document.createElement("h3")
+    // nameElement.innerText = produitsIndex.name;
+    // On crée l’élément description.
+    const descriptionElement = document.createElement("p");
+    // descriptionElement.innerText = produitsIndex.description;
+
+ // On rattache l’image à pieceElement (la balise article)
+// Rattache au balise concerner
+    
+    sectionItem.appendChild(displayProductImage);
+    sectionItem.appendChild(displayProductName);
+    sectionItem.appendChild(displayProductDescription);
+
+}
+*/
+
 /*
+
+// Création des element conteneur
+const blocElement = document.createElement("article"); // article de l'element
+blocElement = document.querySelector(".items");
+blocElement.appendChild(displayProductImage);
+blocElement.appendChild(displayProductName);
+blocElement.appendChild(displayProductDescription);
+*/
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/*                                         RESSOURCES
 // Creation des element des produits
 const sectionItem = document.querySelector("items");
 
