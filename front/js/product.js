@@ -1,3 +1,7 @@
+// Récuperation de la chaîne de requete dans l'url
+const queryString_url_id = window.location.search;
+console.log(queryString_url_id);
+
 /* RESSOURCES
 // penser a refaire un fetch (urlsearchparam)en fonction de l'id
 // creation du local strorage
