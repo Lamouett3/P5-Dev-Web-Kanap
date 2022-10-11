@@ -41,6 +41,11 @@ product.then((response) => {
     productName.innerText = data.name;
     const containerName = document.querySelector("#title");
     containerName.appendChild(productName);
+    // Création du contenaire prix
+    const productPrice = document.createElement("p");
+    productPrice.innerText = data.price;
+    const containerPrice = document.querySelector("#price");
+    containerPrice.appendChild(productPrice);
 
     // Création du contenaire description
 
