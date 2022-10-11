@@ -57,6 +57,12 @@ product.then((response) => {
   });
 });
 
+// Creation du tableau PANIER "on click"
+const boutonPanier = document.querySelector("#addToCart");
+boutonPanier.addEventListener("click", function () {
+  // ...
+});
+
 /* RESSOURCES
 // penser a refaire un fetch (urlsearchparam)en fonction de l'id
 // creation du local strorage
