@@ -57,10 +57,12 @@ product.then((response) => {
   });
 });
 
-// Creation du tableau PANIER "on click"
+// Creation du tableau PANIER
+
+// création de la fonction "on click" du panier
 const boutonPanier = document.querySelector("#addToCart");
 boutonPanier.addEventListener("click", function () {
-  // ...
+  // Fonction qui ajoute une entrée dans le tableau panier
 });
 
 /* RESSOURCES
