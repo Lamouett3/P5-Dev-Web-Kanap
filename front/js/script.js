@@ -19,14 +19,18 @@ product.then((response) => {
       productName.innerText = data[i].name;
       const productDescription = document.createElement("p");
       productDescription.innerText = data[i].description;
+
+      const productLink = document.createElement("a");
+      productLink.href = `./product.html?id=${data[i]._id}`;
+
       // Rattache les contenaire entre eux
       const productContainer = document.createElement("article");
       productContainer.appendChild(productImage);
       productContainer.appendChild(productName);
       productContainer.appendChild(productDescription);
-
+      productLink.appendChild(productContainer);
       const sectionItem = document.querySelector(".items");
-      sectionItem.appendChild(productContainer);
+      sectionItem.appendChild(productLink);
     }
   });
 });
