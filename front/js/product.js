@@ -57,13 +57,17 @@ product.then((response) => {
   });
 });
 
+/*
 // Creation du tableau PANIER
+
+const panier = ["id", "QuantitéProduit", "CouleurProduit"];
 
 // création de la fonction "on click" du panier
 const boutonPanier = document.querySelector("#addToCart");
 boutonPanier.addEventListener("click", function () {
   // Fonction qui ajoute une entrée dans le tableau panier
 });
+*/
 
 /* RESSOURCES
 // penser a refaire un fetch (urlsearchparam)en fonction de l'id
