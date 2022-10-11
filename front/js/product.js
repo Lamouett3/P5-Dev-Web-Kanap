@@ -28,12 +28,27 @@ product.then((response) => {
   kanapData.then((data) => {
     console.log(data);
 
-    // Création du contenaire
+    // Création du contenaire image
+
     const productImage = document.createElement("img");
     productImage.src = data.imageUrl;
-    containerImage = document.querySelector(".item__img");
+    const containerImage = document.querySelector(".item__img");
     containerImage.appendChild(productImage);
     console.log(productImage);
+
+    // Création du contenaire titre
+    const productName = document.createElement("h1");
+    productName.innerText = data.name;
+    const containerName = document.querySelector("#title");
+    containerName.appendChild(productName);
+
+    // Création du contenaire description
+
+    const productDescription = document.createElement("p");
+    productDescription.innerText = data.description;
+    const containerDescription = document.querySelector("#description");
+    containerDescription.appendChild(productDescription);
+    console.log(productDescription);
   });
 });
 
