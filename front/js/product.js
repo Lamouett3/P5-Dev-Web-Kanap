@@ -31,7 +31,8 @@ product.then((response) => {
     // Création du contenaire
     const productImage = document.createElement("img");
     productImage.src = data.imageUrl;
-    // productImage = document.querySelector(".item__img");
+    containerImage = document.querySelector(".item__img");
+    containerImage.appendChild(productImage);
     console.log(productImage);
   });
 });
