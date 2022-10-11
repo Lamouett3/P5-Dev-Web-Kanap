@@ -11,22 +11,22 @@ console.log(get_id);         */
 const get_id = new URLSearchParams(queryString_url_id);
 //console.log(get_id);
 const id = get_id.get("id");
-console.log(id);
+// console.log(id);
 
 //Récuperation d'un objet par sa key id
 
 // Méthode : avec fetch et en mettant la valeur de l'id a la fin de l'url
 const product = fetch(`http://localhost:3000/api/products/${id}`);
-console.log(product);
+//console.log(product);
 
 // Affiche les données de l'id sous forme de tableau
 product.then((response) => {
-  console.log(response);
+  //  console.log(response);
   // retourne les données au format JSON
   const kanapData = response.json();
   // puise dans le fichier json et retourne le tableau
   kanapData.then((data) => {
-    console.log(data);
+    //    console.log(data);
 
     // Création du contenaire image
 
@@ -34,7 +34,7 @@ product.then((response) => {
     productImage.src = data.imageUrl;
     const containerImage = document.querySelector(".item__img");
     containerImage.appendChild(productImage);
-    console.log(productImage);
+    //    console.log(productImage);
 
     // Création du contenaire titre
     const productName = document.createElement("h1");
@@ -53,7 +53,7 @@ product.then((response) => {
     productDescription.innerText = data.description;
     const containerDescription = document.querySelector("#description");
     containerDescription.appendChild(productDescription);
-    console.log(productDescription);
+    //    console.log(productDescription);
   });
 });
 
