@@ -6,3 +6,4 @@ const developer = localStorage.getItem("prenom");
 console.log(developer);
 localStorage.removeItem("prenom");
 */
+// test pour git
