@@ -58,23 +58,6 @@ product.then((response) => {
   });
 });
 
-/*
-
-  // Transformation des pieces en JSON
-  const panier = JSON.stringify(kanapData);
-  // Stockage des informations dans le localStorage
-  window.localStorage.setItem("kanapData", panier);
-  
-// Creation du tableau PANIER
-const panier = ["id", "QuantitéProduit", "CouleurProduit"];
-
-// création de la fonction "on click" du panier
-const boutonPanier = document.querySelector("#addToCart");
-boutonPanier.addEventListener("click", function () {
-  // Fonction qui ajoute une entrée dans le tableau panier
-});
-*/
-
 /* RESSOURCES
 // penser a refaire un fetch (urlsearchparam)en fonction de l'id
 // creation du local strorage
