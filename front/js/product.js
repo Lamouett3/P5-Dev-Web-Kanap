@@ -24,6 +24,7 @@ product.then((response) => {
   //  console.log(response);
   // retourne les données au format JSON
   const kanapData = response.json();
+
   // puise dans le fichier json et retourne le tableau
   kanapData.then((data) => {
     //    console.log(data);
@@ -58,8 +59,13 @@ product.then((response) => {
 });
 
 /*
-// Creation du tableau PANIER
 
+  // Transformation des pieces en JSON
+  const panier = JSON.stringify(kanapData);
+  // Stockage des informations dans le localStorage
+  window.localStorage.setItem("kanapData", panier);
+  
+// Creation du tableau PANIER
 const panier = ["id", "QuantitéProduit", "CouleurProduit"];
 
 // création de la fonction "on click" du panier
