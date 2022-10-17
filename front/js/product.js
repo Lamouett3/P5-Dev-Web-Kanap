@@ -61,10 +61,10 @@ product.then((response) => {
     let colorsSelector;
     Object.entries(data.colors).forEach((colors) => {
       console.log(colors);
-      colorSelector = document.createElement("option");
-      colorSelector.innerText = data.colors;
+      colorsSelector = document.createElement("option");
+      colorsSelector.innerText = data.colors;
       const colorBloc = document.getElementById("colors");
-      colorBloc.appendChild(colorSelector);
+      colorBloc.appendChild(colorsSelector);
     });
   });
 });
