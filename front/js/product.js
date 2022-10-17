@@ -45,19 +45,40 @@ product.then((response) => {
     // Création du contenaire prix
     const productPrice = document.createElement("p");
     productPrice.innerText = data.price;
-    const containerPrice = document.querySelector("#price");
+    const containerPrice = document.getElementById("price");
     containerPrice.appendChild(productPrice);
 
     // Création du contenaire description
 
     const productDescription = document.createElement("p");
     productDescription.innerText = data.description;
-    const containerDescription = document.querySelector("#description");
+    const containerDescription = document.getElementById("description");
     containerDescription.appendChild(productDescription);
     //    console.log(productDescription);
+
+    // Création du menu déroulant
+
+    let colorsSelector;
+    Object.entries(data.colors).forEach((colors) => {
+      console.log(colors);
+      colorSelector = document.createElement("option");
+      colorSelector.innerText = data.colors;
+      const colorBloc = document.getElementById("colors");
+      colorBloc.appendChild(colorSelector);
+    });
   });
 });
 
+/*
+// Le formulaire pour choisir les couleurs du canape
+       <option value="vert">vert</option>
+    <option value="blanc">blanc</option> 
+    const couleurSelect = document.querrySelector("option");
+
+    couleurSelect = 
+
+const optionCouleur = 
+*/
 /* RESSOURCES
 // penser a refaire un fetch (urlsearchparam)en fonction de l'id
 // creation du local strorage
