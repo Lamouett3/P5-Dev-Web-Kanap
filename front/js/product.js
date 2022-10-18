@@ -55,9 +55,33 @@ product.then((response) => {
     const containerDescription = document.getElementById("description");
     containerDescription.appendChild(productDescription);
     //    console.log(productDescription);
+    //------------------La gestion du panier--------
+    // la récuperation des données selectionné par l'utilisateur et  envoie le panier
+    //selection du bouton ajouter l'article au panier
+    const envoyerPanier = document.getElementById("addToCart");
+    //--addEventListener - Ecouter le bouton et envoyer le panier
+    envoyerPanier.addEventListener("click", (event) => {
+      event.preventDefault();
+      // mettre le choix de l'utilisateur dans une variable
+      const choixProduit = envoyerPanier.value;
+      console.log(choixProduit);
 
+      //-------- Récuperation des valeur du formulaire
+      let optionProduit = {
+        quantite_Produit: 1,
+        id_Produit: data._id,
+        couleur_Produit: data.colors,
+      };
+      console.log(optionProduit);
+      //--------------------Stocker la recuperation des valeurs du formulaire dans le local storage
+      let produitLocalStrorage = JSON.parse(localStorage.getItem("produit"));
+      produitLocalStrorage = [];
+      produitLocalStrorage.push(optionProduit);
+      console.log(produitLocalStrorage);
+    });
+
+    /*
     // Création du menu déroulant
-
     let colorsSelector;
     Object.entries(data.colors).forEach((colors) => {
       console.log(colors);
@@ -65,19 +89,71 @@ product.then((response) => {
       colorsSelector.innerText = data.colors;
       const colorBloc = document.getElementById("colors");
       colorBloc.appendChild(colorsSelector);
+      // RESTE A CORRIGER LE L'AFFICHAGE DE COLORS DANS LE MENU DEROULANT
     });
+    */
   });
 });
 
 /*
-// Le formulaire pour choisir les couleurs du canape
-       <option value="vert">vert</option>
-    <option value="blanc">blanc</option> 
-    const couleurSelect = document.querrySelector("option");
 
-    couleurSelect = 
+    //------------------La gestion du panier--------
+    // la récuperation des données selectionné par l'utilisateur et  envoie le panier
+    //selection du bouton ajouter l'article au panier
+    const envoyerPanier = document.getElementById("addToCart");
+    //--addEventListener - Ecouter le bouton et envoyer le panier
+    envoyerPanier.addEventListener("click", (event) => {
+      event.preventDefault();
+      // mettre le choix de l'utilisateur dans une variable
+      const choixProduit = envoyerPanier.value;
+      console.log(choixProduit);
+      
+       //-------- Récuperation des valeur du formulaire
+    let optionProduit = {
+      quantite_Produit: 1,
+      id_Produit: data._id,
+      couleur_Produit: data.colors,
+    };
 
-const optionCouleur = 
+    //--------------------Stocker la recuperation des valeurs du formulaire dans le local storage
+    let produitLocalStrorage = JSON.parse(localStorage.getItem("produit"));
+    produitLocalStrorage = [];
+    produitLocalStrorage.push(optionProduit);
+    console.log(produitLocalStrorage);
+    });
+
+
+
+
+Pensez à crée une key : quantité; produits ; et couleurs
+
+//-------------------- CREATION DU LOCALSTORAGE------------------
+
+//-------- Récuperation des valeur du formulaire
+let optionProduit = {
+    quantite_Produit: 1,
+    id_Produit: data._id,
+    couleur_Produit: data.colors,
+};
+
+
+//--------------------Stocker la recuperation des valeurs du formulaire dans le local storage 
+let produitLocalStrorage = JSON.parse(localStorage.getItem("produit"));
+produitLocalStrorage = [];
+produitLocalStrorage.push(optionProduit);
+
+
+
+// Declaration de la variable 'produitLocalStorage" dans laquelle on met les key et les values qui sont dans le local storage
+let produitLocalStorage = JSON.parse(localStorage.getItem("id"));
+
+//JSON.parse pour convertir les donnée au format JSON qui sont dans le local storage en object javascript
+
+
+
+
+
+
 */
 /* RESSOURCES
 // penser a refaire un fetch (urlsearchparam)en fonction de l'id
