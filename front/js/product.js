@@ -55,6 +55,7 @@ product.then((response) => {
     const containerDescription = document.getElementById("description");
     containerDescription.appendChild(productDescription);
     //    console.log(productDescription);
+
     //------------------La gestion du panier--------
     // la récuperation des données selectionné par l'utilisateur et  envoie le panier
     //selection du bouton ajouter l'article au panier
@@ -68,7 +69,7 @@ product.then((response) => {
 
       //-------- Récuperation des valeur du formulaire
       let optionProduit = {
-        quantite_Produit: 1,
+        quantite_Produit: 1, // penser a rentrer une fonction pour inclure les quantité du menu déroulant
         id_Produit: data._id,
         couleur_Produit: data.colors,
       };
@@ -77,9 +78,9 @@ product.then((response) => {
       let produitLocalStrorage = JSON.parse(localStorage.getItem("produit"));
       produitLocalStrorage = [];
       produitLocalStrorage.push(optionProduit);
-      console.log(produitLocalStrorage);
+      // envoyer dans le local storage
+      localStorage.setItem("produit", JSON.stringify(produitLocalStrorage));
     });
-
     /*
     // Création du menu déroulant
     let colorsSelector;
