@@ -89,18 +89,26 @@ product.then((response) => {
       };
       console.log(optionProduit);
       //--------------------Stocker la recuperation des valeurs du formulaire dans le local storage
-      let produitLocalStrorage = JSON.parse(localStorage.getItem("produit"));
+      let produitLocalStrorage = JSON.parse(
+        localStorage.getItem("produitsPanier")
+      );
       // s'il y a deja des produits enregistrer dans le local storage
       if (produitLocalStrorage) {
         produitLocalStrorage.push(optionProduit);
-        localStorage.setItem("produit", JSON.stringify(produitLocalStrorage));
+        localStorage.setItem(
+          "produitsPanier",
+          JSON.stringify(produitLocalStrorage)
+        );
       }
       //s'il n'y a pas de produit enregistré dans le local storage
       else {
         produitLocalStrorage = [];
         produitLocalStrorage.push(optionProduit);
         // envoyer dans le local storage
-        localStorage.setItem("produit", JSON.stringify(produitLocalStrorage));
+        localStorage.setItem(
+          "produitsPanier",
+          JSON.stringify(produitLocalStrorage)
+        );
       }
     });
     /*
