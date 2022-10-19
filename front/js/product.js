@@ -54,8 +54,22 @@ product.then((response) => {
     productDescription.innerText = data.description;
     const containerDescription = document.getElementById("description");
     containerDescription.appendChild(productDescription);
-    //    console.log(productDescription);
 
+    //    console.log(productDescription);
+    // Création du menu déroulant
+    let colorsSelector;
+    Object.entries(data.colors).forEach((colors) => {
+      console.log(colors);
+
+      // création d'une boucle pour le menu déroulant
+      for (let i = 0; i < data.colors.length; i++) {
+        colorsSelector = document.createElement("option");
+        colorsSelector.innerText = data.colors[i];
+        const colorBloc = document.getElementById("colors");
+        colorBloc.appendChild(colorsSelector);
+      }
+      // RESTE A CORRIGER LE L'AFFICHAGE DE COLORS DANS LE MENU DEROULANT
+    });
     //------------------La gestion du panier--------
     // la récuperation des données selectionné par l'utilisateur et  envoie le panier
     //selection du bouton ajouter l'article au panier
@@ -94,10 +108,14 @@ product.then((response) => {
     let colorsSelector;
     Object.entries(data.colors).forEach((colors) => {
       console.log(colors);
+
+    // création d'une boucle pour le menu déroulant
+         for (let i = 0; i < data.colors.length; i++) { 
       colorsSelector = document.createElement("option");
-      colorsSelector.innerText = data.colors;
+      colorsSelector.innerText = data.colors[i];
       const colorBloc = document.getElementById("colors");
       colorBloc.appendChild(colorsSelector);
+         }
       // RESTE A CORRIGER LE L'AFFICHAGE DE COLORS DANS LE MENU DEROULANT
     });
     */
