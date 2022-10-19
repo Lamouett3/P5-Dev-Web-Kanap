@@ -60,15 +60,15 @@ product.then((response) => {
     let colorsSelector;
     Object.entries(data.colors).forEach((colors) => {
       console.log(colors);
-
-      // création d'une boucle pour le menu déroulant
-      for (let i = 0; i < data.colors.length; i++) {
-        colorsSelector = document.createElement("option");
-        colorsSelector.innerText = data.colors[i];
+      colorsSelector = document.createElement("option");
+      // création d'une boucle pour le menu déroulant couleur
+      for (let i = 0; i < colors.length; i++) {
+        colorsSelector.innerText = colors[i];
         const colorBloc = document.getElementById("colors");
         colorBloc.appendChild(colorsSelector);
+        // console.log(colorsSelector);
       }
-      // RESTE A CORRIGER LE L'AFFICHAGE DE COLORS DANS LE MENU DEROULANT
+      // RESTE A CORRIGER LE L'AFFICHAGE DES DOUBLON DE COULEUR DANS LE MENU DEROULANT
     });
     //------------------La gestion du panier--------
     // la récuperation des données selectionné par l'utilisateur et  envoie le panier
@@ -85,7 +85,7 @@ product.then((response) => {
       let optionProduit = {
         quantite_Produit: 1, // penser a rentrer une fonction pour inclure les quantité du menu déroulant
         id_Produit: data._id,
-        couleur_Produit: data.colors,
+        couleur_Produit: data.colors, // penser a rentrer une fonction pour inclure les quantité du menu déroulant
       };
       console.log(optionProduit);
       //--------------------Stocker la recuperation des valeurs du formulaire dans le local storage
