@@ -59,7 +59,7 @@ product.then((response) => {
     // Création du menu déroulant
     let colorsSelector;
     Object.entries(data.colors).forEach((colors) => {
-      console.log(colors);
+      // console.log(colors);
       colorsSelector = document.createElement("option");
       // création d'une boucle pour le menu déroulant couleur
       for (let i = 0; i < colors.length; i++) {
@@ -79,7 +79,6 @@ product.then((response) => {
       event.preventDefault();
       // mettre le choix de l'utilisateur dans une variable
       const choixProduit = envoyerPanier.value;
-      console.log(choixProduit);
 
       //-------- Récuperation des valeur du formulaire
       let optionProduit = {
@@ -87,7 +86,7 @@ product.then((response) => {
         id_Produit: data._id,
         couleur_Produit: document.getElementById("colors").value, // penser a rentrer une fonction pour inclure les quantité du menu déroulant
       };
-      console.log(optionProduit);
+
       //--------------------Stocker la recuperation des valeurs du formulaire dans le local storage
       let produitLocalStrorage = JSON.parse(
         localStorage.getItem("produitsPanier")
