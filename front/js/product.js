@@ -85,7 +85,7 @@ product.then((response) => {
       let optionProduit = {
         quantite_Produit: document.getElementById("quantity").value, // recuperation des valeurs du menu deroulant pour le panier
         id_Produit: data._id,
-        couleur_Produit: data.colors, // penser a rentrer une fonction pour inclure les quantité du menu déroulant
+        couleur_Produit: document.getElementById("colors").value, // penser a rentrer une fonction pour inclure les quantité du menu déroulant
       };
       console.log(optionProduit);
       //--------------------Stocker la recuperation des valeurs du formulaire dans le local storage
