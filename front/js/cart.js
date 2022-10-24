@@ -1,4 +1,25 @@
-// Création de la page panier
+//------------------------La gestion panier-------------------------
+
+// Récuperation des produits dans le local storage
+const productCart = localStorage.getItem("produitsPanier");
+
+// convertie la string en object
+const productCartJSON = JSON.parse(productCart);
+console.log(productCartJSON);
+// Création des contenaire
+for (let i = 0; i < productCartJSON.length; i++) {
+  // id du produit
+  const productName = productCartJSON[i].id_Produit;
+  // productName.innerText = productCartJSON[i].id_Produit;
+
+  const productContainer = document.createElement("article");
+  //productContainer.appendChild(productName);
+  //productContainer.appendChild(productImage);
+  //productContainer.appendChild(productDescription);
+  console.log(productContainer);
+}
+
+// La récuperation des données séléctionnées par l'utilisateur et envoie du panier
 
 // Récuperer les élément dans le local storage
 
