@@ -14,11 +14,11 @@ for (let i = 0; i < productCartJSON.length; i++) {
   // const productName = productCartJSON[i].id_Produit;
   // productName.innerText = productCartJSON[i].id_Produit;
 
-  // Crréation des article  + div
+  //-----------------CREATION DES CONTENAIRE ET DU CONTENU HTML
 
   const productContainer = document.createElement("article");
   productContainer.className = "cart__item";
-  // console.log(productContainer);
+  console.log(productContainer);
 
   const productImage = document.createElement("div");
   productImage.className = "cart__item__img";
@@ -43,9 +43,19 @@ for (let i = 0; i < productCartJSON.length; i++) {
   productSettingDelete.className = "cart__item__content__settings__delete";
   //console.log(productSettingDelete);
 
+  productContent.appendChild(productDescription);
+  productContent.appendChild(productSetting);
+
   productSetting.appendChild(productQuantity);
   productSetting.appendChild(productSettingDelete);
-  console.log(productSetting);
+  //console.log(productSetting);
+
+  productContainer.appendChild(productImage);
+  productContainer.appendChild(productContent);
+  // productContainer.appendChild(productSetting);
+
+  const sectionCart = document.getElementById(cart__items);
+  console.log(sectionCart);
 }
 
 // La récuperation des données séléctionnées par l'utilisateur et envoie du panier
@@ -59,26 +69,36 @@ for (let i = 0; i < productCartJSON.length; i++) {
           <h1>Votre panier</h1>
           <section class="cart">
             <section id="cart__items">
+
              <!--  <article class="cart__item" data-id="{product-ID}" data-color="{product-color}">
+
                 <div class="cart__item__img">
                   <img src="../images/product01.jpg" alt="Photographie d'un canapé">
                 </div>
+
                 <div class="cart__item__content">
+
                   <div class="cart__item__content__description">
                     <h2>Nom du produit</h2>
                     <p>Vert</p>
                     <p>42,00 €</p>
                   </div>
+
                   <div class="cart__item__content__settings">
+
                     <div class="cart__item__content__settings__quantity">
                       <p>Qté : </p>
                       <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="42">
                     </div>
+
                     <div class="cart__item__content__settings__delete">
                       <p class="deleteItem">Supprimer</p>
                     </div>
+
                   </div>
+
                 </div>
+
               </article> -->
             </section>
             <div class="cart__price">
