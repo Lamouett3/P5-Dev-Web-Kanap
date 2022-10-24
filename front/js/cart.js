@@ -6,17 +6,46 @@ const productCart = localStorage.getItem("produitsPanier");
 // convertie la string en object
 const productCartJSON = JSON.parse(productCart);
 console.log(productCartJSON);
+
 // Création des contenaire
+
 for (let i = 0; i < productCartJSON.length; i++) {
   // id du produit
-  const productName = productCartJSON[i].id_Produit;
+  // const productName = productCartJSON[i].id_Produit;
   // productName.innerText = productCartJSON[i].id_Produit;
 
+  // Crréation des article  + div
+
   const productContainer = document.createElement("article");
-  //productContainer.appendChild(productName);
-  //productContainer.appendChild(productImage);
-  //productContainer.appendChild(productDescription);
-  console.log(productContainer);
+  productContainer.className = "cart__item";
+  // console.log(productContainer);
+
+  const productImage = document.createElement("div");
+  productImage.className = "cart__item__img";
+  // console.log(productImage);
+
+  const productContent = document.createElement("div");
+  productContent.className = "cart__item__content";
+  //console.log(productContent);
+
+  const productDescription = document.createElement("div");
+  productDescription.className = "cart__item__content__description";
+  //console.log(productDescription);
+
+  const productSetting = document.createElement("div");
+  productSetting.className = "cart__item__content__settings";
+  //console.log(productSetting);
+  const productQuantity = document.createElement("div");
+  productQuantity.className = "cart__item__content__settings__quantity";
+  //console.log(productQuantity);
+
+  const productSettingDelete = document.createElement("div");
+  productSettingDelete.className = "cart__item__content__settings__delete";
+  //console.log(productSettingDelete);
+
+  productSetting.appendChild(productQuantity);
+  productSetting.appendChild(productSettingDelete);
+  console.log(productSetting);
 }
 
 // La récuperation des données séléctionnées par l'utilisateur et envoie du panier
