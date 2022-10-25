@@ -10,14 +10,11 @@ console.log(productCartJSON);
 
 const productContainer = document.createElement("article");
 const emplacementContenair = document.querySelector("#cart__items");
-emplacementContenair.appendChild(productContainer);
 console.log(emplacementContenair);
 
 for (let i = 0; i < productCartJSON.length; i++) {
-  // id du produit
-  // const productName = productCartJSON[i].id_Produit;
-  // productName.innerText = productCartJSON[i].id_Produit;
   //-----------------CREATION DES CONTENAIRE ET DU CONTENU HTML
+  /*
   productContainer.className = `class="cart__item" data-id="${productCartJSON[i].id_Produit}" data-color="${productCartJSON[i].couleur_Produit}`;
   productContainer.innerHTML = `<div class="cart__item__img">
       <img src="${productCartJSON[i].imageProduit}" alt="Photographie d'un canapé">
@@ -31,7 +28,7 @@ for (let i = 0; i < productCartJSON.length; i++) {
       <div class="cart__item__content__settings">
         <div class="cart__item__content__settings__quantity">
           <p>Qté : </p>
-          <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="42">
+          <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${productCartJSON[i].quantite_Produit}">
         </div>
         <div class="cart__item__content__settings__delete">
           <p class="deleteItem">Supprimer</p>
@@ -40,53 +37,54 @@ for (let i = 0; i < productCartJSON.length; i++) {
     </div>`;
 
   console.log(productContainer);
+*/
+  const productContainer = document.createElement("article");
+  productContainer.className = `cart__item" data-id="${productCartJSON[i].id_Produit}" data-color="${productCartJSON[i].couleur_Produit}`;
+  console.log(productContainer);
 
-  /*
-      const productContainer = document.createElement("article");
-      productContainer.className = "cart__item";
-      console.log(productContainer);
+  const productImage = document.createElement("div");
+  productImage.className = "cart__item__img";
+  const productImageUrl = document.createElement("img");
+  productImageUrl.src = productCartJSON[i].imageProduit;
+  // console.log(productImage);
 
-      const productImage = document.createElement("div");
-      productImage.className = "cart__item__img";
-      const productImageUrl = document.createElement("img");
-      // console.log(productImage);
+  const productContent = document.createElement("div");
+  productContent.className = "cart__item__content";
+  //console.log(productContent);
 
-      const productContent = document.createElement("div");
-      productContent.className = "cart__item__content";
-      //console.log(productContent);
+  const productDescription = document.createElement("div");
+  productDescription.className = "cart__item__content__description";
+  //console.log(productDescription);
+  const productDescriptionTitle = document.createElement("h2");
+  //console.log(productDescriptionTitle);
 
-      const productDescription = document.createElement("div");
-      productDescription.className = "cart__item__content__description";
-      //console.log(productDescription);
-      const productDescriptionTitle = document.createElement("h2");
-      //console.log(productDescriptionTitle);
+  const productSetting = document.createElement("div");
+  productSetting.className = "cart__item__content__settings";
+  //console.log(productSetting);
+  const productQuantity = document.createElement("div");
+  productQuantity.className = "cart__item__content__settings__quantity";
+  //console.log(productQuantity);
 
-      const productSetting = document.createElement("div");
-      productSetting.className = "cart__item__content__settings";
-      //console.log(productSetting);
-      const productQuantity = document.createElement("div");
-      productQuantity.className = "cart__item__content__settings__quantity";
-      //console.log(productQuantity);
+  const productSettingDelete = document.createElement("div");
+  productSettingDelete.className = "cart__item__content__settings__delete";
+  //console.log(productSettingDelete);
 
-      const productSettingDelete = document.createElement("div");
-      productSettingDelete.className = "cart__item__content__settings__delete";
-      //console.log(productSettingDelete);
+  //-----------------------Définit les element parents ----------------------
 
-      //-----------------------Définit les element parents ----------------------
+  productImage.appendChild(productImageUrl);
+  productDescription.appendChild(productDescriptionTitle);
+  productContent.appendChild(productDescription);
+  productContent.appendChild(productSetting);
 
-      productImage.appendChild(productImageUrl);
-      productDescription.appendChild(productDescriptionTitle);
-      productContent.appendChild(productDescription);
-      productContent.appendChild(productSetting);
+  productSetting.appendChild(productQuantity);
+  productSetting.appendChild(productSettingDelete);
+  //console.log(productSetting);
 
-      productSetting.appendChild(productQuantity);
-      productSetting.appendChild(productSettingDelete);
-      //console.log(productSetting);
+  productContainer.appendChild(productImage);
+  productContainer.appendChild(productContent);
+  // productContainer.appendChild(productSetting);
 
-      productContainer.appendChild(productImage);
-      productContainer.appendChild(productContent);
-      // productContainer.appendChild(productSetting);
-      */
+  emplacementContenair.appendChild(productContainer);
 }
 
 // La récuperation des données séléctionnées par l'utilisateur et envoie du panier
