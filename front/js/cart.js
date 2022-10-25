@@ -39,6 +39,8 @@ for (let i = 0; i < productCartJSON.length; i++) {
 */
   const productContainer = document.createElement("article");
   productContainer.className = "cart__item"; // `data-id="${productCartJSON[i].id_Produit}" data-color="${productCartJSON[i].couleur_Produit}`;
+  productContainer.dataset.id = `${productCartJSON[i].id_Produit}`;
+  productContainer.dataset.color = `${productCartJSON[i].couleur_Produit}`;
   console.log(productContainer);
 
   const productImage = document.createElement("div");
@@ -72,6 +74,8 @@ for (let i = 0; i < productCartJSON.length; i++) {
   productQuantityText.innerText = "Qté :";
   const productQuantityInput = document.createElement("input");
   productQuantityInput.className = "itemQuantity"; // `name="itemQuantity" min="1" max="100" value="${productCartJSON[i].quantite_Produit}"`;
+  productQuantityInput.name = "itemQuantity";
+  productQuantityInput.value = `${productCartJSON[i].quantite_Produit}`;
   productQuantityInput.type = "number";
 
   //console.log(productQuantity);
