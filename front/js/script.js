@@ -16,8 +16,10 @@ product.then((response) => {
       const productImage = document.createElement("img");
       productImage.src = data[i].imageUrl;
       const productName = document.createElement("h3");
+      productName.className = "productName";
       productName.innerText = data[i].name;
       const productDescription = document.createElement("p");
+      productDescription.className = "productDescription";
       productDescription.innerText = data[i].description;
 
       const productLink = document.createElement("a");

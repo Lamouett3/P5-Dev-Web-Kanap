@@ -1,4 +1,5 @@
 //------------------------La gestion panier-------------------------
+
 // Récuperer les données dans l'API HTTP
 const productApi = fetch("http://localhost:3000/api/products");
 
@@ -31,7 +32,6 @@ productApi.then((response) => {
       const productImage = document.createElement("div");
       productImage.className = "cart__item__img";
       const productImageUrl = document.createElement("img");
-      productImageUrl.src = data[i].imageUrl;
       // console.log(productImage);
 
       const productContent = document.createElement("div");
@@ -42,7 +42,6 @@ productApi.then((response) => {
       productDescription.className = "cart__item__content__description";
       //console.log(productDescription);
       const productDescriptionTitle = document.createElement("h2");
-      productDescription.innerText = data[i].name;
       //console.log(productDescriptionTitle);
 
       const productSetting = document.createElement("div");
@@ -56,6 +55,7 @@ productApi.then((response) => {
       productSettingDelete.className = "cart__item__content__settings__delete";
       //console.log(productSettingDelete);
 
+      //-----------------------Définit les element parents ----------------------
       productImage.appendChild(productImageUrl);
       productDescription.appendChild(productDescriptionTitle);
       productContent.appendChild(productDescription);
@@ -68,9 +68,6 @@ productApi.then((response) => {
       productContainer.appendChild(productImage);
       productContainer.appendChild(productContent);
       // productContainer.appendChild(productSetting);
-
-      const sectionCart = document.getElementById(cart__items);
-      console.log(sectionCart);
     }
   });
 });
