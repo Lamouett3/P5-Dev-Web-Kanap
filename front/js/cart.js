@@ -1,30 +1,47 @@
 //------------------------La gestion panier-------------------------
+//--------------- Récuperation des produits dans le local storage-------------------
+const productCart = localStorage.getItem("produitsPanier");
 
-// Récuperer les données dans l'API HTTP
-const productApi = fetch("http://localhost:3000/api/products");
+//---------------------convertie la string en object
+const productCartJSON = JSON.parse(productCart);
+console.log(productCartJSON);
 
-// Affiche le tableau
-productApi.then((response) => {
-  // retourne les données au format JSON
-  const productApiJSON = response.json();
-  // affiche les données sous forme de array
-  productApiJSON.then((data) => {
-    // Récuperation des produits dans le local storage
-    const productCart = localStorage.getItem("produitsPanier");
+//----------------------------Création des contenaire------------------------------
 
-    // convertie la string en object
-    const productCartJSON = JSON.parse(productCart);
-    console.log(productCartJSON);
+const productContainer = document.createElement("article");
+const emplacementContenair = document.querySelector("#cart__items");
+emplacementContenair.appendChild(productContainer);
+console.log(emplacementContenair);
 
-    // Création des contenaire
+for (let i = 0; i < productCartJSON.length; i++) {
+  // id du produit
+  // const productName = productCartJSON[i].id_Produit;
+  // productName.innerText = productCartJSON[i].id_Produit;
+  //-----------------CREATION DES CONTENAIRE ET DU CONTENU HTML
+  productContainer.className = `class="cart__item" data-id="${productCartJSON[i].id_Produit}" data-color="${productCartJSON[i].couleur_Produit}`;
+  productContainer.innerHTML = `<div class="cart__item__img">
+      <img src="${productCartJSON[i].imageProduit}" alt="Photographie d'un canapé">
+    </div>
+    <div class="cart__item__content">
+      <div class="cart__item__content__description">
+        <h2>Nom du produit</h2>
+        <p>Vert</p>
+        <p> ${productCartJSON[i].prixProduit} €</p>
+      </div>
+      <div class="cart__item__content__settings">
+        <div class="cart__item__content__settings__quantity">
+          <p>Qté : </p>
+          <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="42">
+        </div>
+        <div class="cart__item__content__settings__delete">
+          <p class="deleteItem">Supprimer</p>
+        </div>
+      </div>
+    </div>`;
 
-    for (let i = 0; i < productCartJSON.length; i++) {
-      // id du produit
-      // const productName = productCartJSON[i].id_Produit;
-      // productName.innerText = productCartJSON[i].id_Produit;
+  console.log(productContainer);
 
-      //-----------------CREATION DES CONTENAIRE ET DU CONTENU HTML
-
+  /*
       const productContainer = document.createElement("article");
       productContainer.className = "cart__item";
       console.log(productContainer);
@@ -56,6 +73,7 @@ productApi.then((response) => {
       //console.log(productSettingDelete);
 
       //-----------------------Définit les element parents ----------------------
+
       productImage.appendChild(productImageUrl);
       productDescription.appendChild(productDescriptionTitle);
       productContent.appendChild(productDescription);
@@ -68,9 +86,9 @@ productApi.then((response) => {
       productContainer.appendChild(productImage);
       productContainer.appendChild(productContent);
       // productContainer.appendChild(productSetting);
-    }
-  });
-});
+      */
+}
+
 // La récuperation des données séléctionnées par l'utilisateur et envoie du panier
 
 // Récuperer les élément dans le local storage
