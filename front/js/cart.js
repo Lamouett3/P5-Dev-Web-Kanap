@@ -13,30 +13,7 @@ console.log(emplacementContenair);
 
 for (let i = 0; i < productCartJSON.length; i++) {
   //-----------------CREATION DES CONTENAIRE ET DU CONTENU HTML
-  /*
-  productContainer.className = `class="cart__item" data-id="${productCartJSON[i].id_Produit}" data-color="${productCartJSON[i].couleur_Produit}`;
-  productContainer.innerHTML = `<div class="cart__item__img">
-      <img src="${productCartJSON[i].imageProduit}" alt="Photographie d'un canapé">
-    </div>
-    <div class="cart__item__content">
-      <div class="cart__item__content__description">
-        <h2>Nom du produit</h2>
-        <p>Vert</p>
-        <p> ${productCartJSON[i].prixProduit} €</p>
-      </div>
-      <div class="cart__item__content__settings">
-        <div class="cart__item__content__settings__quantity">
-          <p>Qté : </p>
-          <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${productCartJSON[i].quantite_Produit}">
-        </div>
-        <div class="cart__item__content__settings__delete">
-          <p class="deleteItem">Supprimer</p>
-        </div>
-      </div>
-    </div>`;
 
-  console.log(productContainer);
-*/
   const productContainer = document.createElement("article");
   productContainer.className = "cart__item"; // `data-id="${productCartJSON[i].id_Produit}" data-color="${productCartJSON[i].couleur_Produit}`;
   productContainer.dataset.id = `${productCartJSON[i].id_Produit}`;
@@ -70,8 +47,10 @@ for (let i = 0; i < productCartJSON.length; i++) {
   //console.log(productSetting);
   const productQuantity = document.createElement("div");
   productQuantity.className = "cart__item__content__settings__quantity";
+
   const productQuantityText = document.createElement("p");
   productQuantityText.innerText = "Qté :";
+
   const productQuantityInput = document.createElement("input");
   productQuantityInput.className = "itemQuantity"; // `name="itemQuantity" min="1" max="100" value="${productCartJSON[i].quantite_Produit}"`;
   productQuantityInput.name = "itemQuantity";
@@ -108,12 +87,30 @@ for (let i = 0; i < productCartJSON.length; i++) {
 
   emplacementContenair.appendChild(productContainer);
 }
+//------------------Mise en place du total articles-----------------
 
-// La récuperation des données séléctionnées par l'utilisateur et envoie du panier
+/*  <div class="cart__price">
+              <p>Total (<span id="totalQuantity"><!-- 2 --></span> articles) : <span id="totalPrice"><!-- 84,00 --></span> €</p>
+    </div> */
 
-// Récuperer les élément dans le local storage
+let totalPriceCalcul = [];
+for (let p = 0; p < productCartJSON.length; p++) {
+  let prixProduitPanier = productCartJSON[p].prixProduit;
 
-// RESSOURCES BLOC INSERTION HTML
+  //----------------------Mettre le prix dans la variable totalPrice
+  totalPriceCalcul.push(prixProduitPanier);
+}
+//--------------------------Aditionner le prix du tableau dans la variable total price avec la fonction reduce
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+const totalPrice = totalPriceCalcul.reduce(reducer, 0);
+//console.log(totalPrice);
+//------------------------Le code html ou le prix sera afficher
+const affichagePrixHtml = document.querySelector("#totalPrice");
+affichagePrixHtml.innerText = `${totalPrice}`;
+// console.log(affichagePrixHtml);
+
+//-----------------------------RESSOURCES BLOC INSERTION HTML-------------------------------------
 /*
 <main class="limitedWidthBlockContainer">
   <div class="cartAndFormContainer" id="cartAndFormContainer">

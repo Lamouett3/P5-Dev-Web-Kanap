@@ -82,11 +82,11 @@ product.then((response) => {
 
       //-------- Récuperation des valeur du formulaire
       let optionProduit = {
-        quantite_Produit: document.getElementById("quantity").value, // recuperation des valeurs du menu deroulant pour le panier
         id_Produit: data._id,
         nomProduit: data.name,
         imageProduit: data.imageUrl,
         prixProduit: data.price,
+        quantite_Produit: document.getElementById("quantity").value, // recuperation des valeurs du menu deroulant pour le panier
         couleur_Produit: document.getElementById("colors").value, // penser a rentrer une fonction pour inclure les quantité du menu déroulant
       };
 
