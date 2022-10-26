@@ -62,6 +62,8 @@ for (let i = 0; i < productCartJSON.length; i++) {
   const productSettingDelete = document.createElement("div");
   productSettingDelete.className = "cart__item__content__settings__delete";
   //console.log(productSettingDelete);
+  const productSettingDeleteText = document.createElement("p");
+  productSettingDeleteText.innerText = "Supprimer";
 
   //-----------------------Définit les element parents ----------------------
 
@@ -80,6 +82,7 @@ for (let i = 0; i < productCartJSON.length; i++) {
   productSetting.appendChild(productQuantity);
   productSetting.appendChild(productSettingDelete);
   //console.log(productSetting);
+  productSettingDelete.appendChild(productSettingDeleteText);
 
   productContainer.appendChild(productImage);
   productContainer.appendChild(productContent);
