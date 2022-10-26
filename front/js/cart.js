@@ -4,12 +4,12 @@ const productCart = localStorage.getItem("produitsPanier");
 
 //---------------------convertie la string en object
 const productCartJSON = JSON.parse(productCart);
-console.log(productCartJSON);
+//console.log(productCartJSON);
 
 //----------------------------Création des contenaire------------------------------
 const productContainer = document.createElement("article");
 const emplacementContenair = document.querySelector("#cart__items");
-console.log(emplacementContenair);
+//console.log(emplacementContenair);
 
 for (let i = 0; i < productCartJSON.length; i++) {
   //-----------------CREATION DES CONTENAIRE ET DU CONTENU HTML
@@ -18,7 +18,7 @@ for (let i = 0; i < productCartJSON.length; i++) {
   productContainer.className = "cart__item"; // `data-id="${productCartJSON[i].id_Produit}" data-color="${productCartJSON[i].couleur_Produit}`;
   productContainer.dataset.id = `${productCartJSON[i].id_Produit}`;
   productContainer.dataset.color = `${productCartJSON[i].couleur_Produit}`;
-  console.log(productContainer);
+  //console.log(productContainer);
 
   const productImage = document.createElement("div");
   productImage.className = "cart__item__img";
@@ -112,6 +112,17 @@ const totalPrice = totalPriceCalcul.reduce(reducer, 0);
 const affichagePrixHtml = document.querySelector("#totalPrice");
 affichagePrixHtml.innerText = `${totalPrice}`;
 // console.log(affichagePrixHtml);
+
+//----------------------------Gestion du bouton suprimer l'article
+// Selection du bouton suprimer
+const buttonDelete = document.querySelector(
+  ".cart__item__content__settings__delete"
+);
+
+buttonDelete.addEventListener("click", function () {
+  window.localStorage.removeItem("id_Produit");
+});
+console.log(buttonDelete);
 
 //-----------------------------RESSOURCES BLOC INSERTION HTML-------------------------------------
 /*
