@@ -52,10 +52,12 @@ for (let i = 0; i < productCartJSON.length; i++) {
   productQuantityText.innerText = "Qté :";
 
   const productQuantityInput = document.createElement("input");
+  productQuantityInput.type = "number";
   productQuantityInput.className = "itemQuantity"; // `name="itemQuantity" min="1" max="100" value="${productCartJSON[i].quantite_Produit}"`;
   productQuantityInput.name = "itemQuantity";
+  productQuantityInput.min = "1";
+  productQuantityInput.max = "100";
   productQuantityInput.value = `${productCartJSON[i].quantite_Produit}`;
-  productQuantityInput.type = "number";
 
   //console.log(productQuantity);
 
@@ -63,6 +65,7 @@ for (let i = 0; i < productCartJSON.length; i++) {
   productSettingDelete.className = "cart__item__content__settings__delete";
   //console.log(productSettingDelete);
   const productSettingDeleteText = document.createElement("p");
+  productSettingDeleteText.className = "deleteItem";
   productSettingDeleteText.innerText = "Supprimer";
 
   //-----------------------Définit les element parents ----------------------
@@ -113,17 +116,11 @@ const affichagePrixHtml = document.querySelector("#totalPrice");
 affichagePrixHtml.innerText = `${totalPrice}`;
 // console.log(affichagePrixHtml);
 
-//----------------------------Gestion du bouton suprimer l'article
-// Selection du bouton suprimer
-const buttonDelete = document.querySelector(
-  ".cart__item__content__settings__delete"
-);
-
-buttonDelete.addEventListener("click", function () {
-  window.localStorage.removeItem("id_Produit");
+//----------------------------Gestion du bouton suprimer l'article------------------------------------
+const boutonDelete = document.querySelector(".deleteItem");
+boutonDelete.addEventListener("click", function () {
+  window.localStorage.removeItem(productCart);
 });
-console.log(buttonDelete);
-
 //-----------------------------RESSOURCES BLOC INSERTION HTML-------------------------------------
 /*
 <main class="limitedWidthBlockContainer">
