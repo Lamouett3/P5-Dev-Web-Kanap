@@ -117,10 +117,12 @@ affichagePrixHtml.innerText = `${totalPrice}`;
 // console.log(affichagePrixHtml);
 
 //----------------------------Gestion du bouton suprimer l'article------------------------------------
+/*
 const boutonDelete = document.querySelector(".deleteItem");
 boutonDelete.addEventListener("click", function () {
   window.localStorage.removeItem(productCart);
 });
+*/
 //-----------------------------RESSOURCES BLOC INSERTION HTML-------------------------------------
 /*
 <main class="limitedWidthBlockContainer">
