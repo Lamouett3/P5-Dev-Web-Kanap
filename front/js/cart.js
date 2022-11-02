@@ -95,9 +95,11 @@ for (let i = 0; i < productCartJSON.length; i++) {
 }
 //------------------Mise en place du total articles-----------------
 
-/*  <div class="cart__price">
-              <p>Total (<span id="totalQuantity"><!-- 2 --></span> articles) : <span id="totalPrice"><!-- 84,00 --></span> €</p>
-    </div> */
+/*  
+<div class="cart__price">
+    <p>Total (<span id="totalQuantity"><!-- 2 --></span> articles) : <span id="totalPrice"><!-- 84,00 --></span> €</p>
+</div> 
+*/
 
 let totalPriceCalcul = [];
 for (let p = 0; p < productCartJSON.length; p++) {
@@ -106,6 +108,7 @@ for (let p = 0; p < productCartJSON.length; p++) {
   //----------------------Mettre le prix dans la variable totalPrice
   totalPriceCalcul.push(prixProduitPanier);
 }
+
 //--------------------------Aditionner le prix du tableau dans la variable total price avec la fonction reduce
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
@@ -116,7 +119,17 @@ const affichagePrixHtml = document.querySelector("#totalPrice");
 affichagePrixHtml.innerText = `${totalPrice}`;
 // console.log(affichagePrixHtml);
 
+///////////////////////////----changer les quantité influe sur le prix----------------------
+/////////////////////////// PENSER A UTILISER CHANGE EN JS //////////////////////////////////
+const selectQuantity = document.querySelector(".itemQuantity");
+
+selectQuantity.addEventListener("change", (event) => {
+  const result = document.querySelector("#totalPrice");
+  result.textContent = `${event.totalPrice}`;
+});
+/////////////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Gestion du bouton suprimer l'article------------------------------------
+
 /*
 const boutonDelete = document.querySelector(".deleteItem");
 boutonDelete.addEventListener("click", function () {

@@ -91,9 +91,11 @@ product.then((response) => {
       };
 
       //--------------------Stocker la recuperation des valeurs du formulaire dans le local storage
+
       let produitLocalStrorage = JSON.parse(
         localStorage.getItem("produitsPanier")
       );
+
       // s'il y a deja des produits enregistrer dans le local storage
       if (produitLocalStrorage) {
         produitLocalStrorage.push(optionProduit);
@@ -113,25 +115,18 @@ product.then((response) => {
         );
       }
     });
-    /*
-    // Création du menu déroulant
-    let colorsSelector;
-    Object.entries(data.colors).forEach((colors) => {
-      console.log(colors);
-
-    // création d'une boucle pour le menu déroulant
-         for (let i = 0; i < data.colors.length; i++) { 
-      colorsSelector = document.createElement("option");
-      colorsSelector.innerText = data.colors[i];
-      const colorBloc = document.getElementById("colors");
-      colorBloc.appendChild(colorsSelector);
-         }
-      // RESTE A CORRIGER LE L'AFFICHAGE DE COLORS DANS LE MENU DEROULANT
-    });
-    */
   });
 });
+/*
+//--------- setion pour eviter les doublon d'article et changer uniquement la quantite
+for (
+  i = 0;
+  produitLocalStorage.id_Produit[i] === produitLocalStorage.id_Produit[i] &&
+  produitLocalStrorage.couleur_Produit[i] ===
+    produitLocalStrorage.couleur_Produit[i];
 
+) {}
+*/
 /*
 
     //------------------La gestion du panier--------
