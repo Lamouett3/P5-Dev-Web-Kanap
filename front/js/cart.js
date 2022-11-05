@@ -59,8 +59,6 @@ for (let i = 0; i < productCartJSON.length; i++) {
   productQuantityInput.max = "100";
   productQuantityInput.value = `${productCartJSON[i].quantite_Produit}`;
 
-  //console.log(productQuantity);
-
   const productSettingDelete = document.createElement("div");
   productSettingDelete.className = "cart__item__content__settings__delete";
   //console.log(productSettingDelete);
@@ -93,6 +91,31 @@ for (let i = 0; i < productCartJSON.length; i++) {
 
   emplacementContenair.appendChild(productContainer);
 }
+///////////////////////////----Change les quantite et influe sur les prix ----------------------
+
+function modifQuantite() {
+  let inputs = document.querySelectorAll(".itemQuantity");
+  for (let input of Array.from(inputs)) {
+    input.addEventListener("change", (event) => {
+      let canapeId = event.target.getAttribute("id_Produit");
+      let canapeColor = event.target.getAttribute("couleur_Produit");
+      const modif = productCartJSON.find(
+        (element) =>
+          element.id == productCartJSON.id_Produit &&
+          element.couleur == productCartJSON.couleur_Produit
+      );
+      modif.quantite_Produit = input.value;
+      //productCartJSON = modif;
+      localStorage.setItem("produitsPanier", JSON.stringify(productCartJSON));
+      window.location.href = "cart.html";
+    });
+  }
+}
+
+modifQuantite();
+
+////////////////////////////////////////////////////////////////
+
 //------------------Mise en place du total articles-----------------
 
 /*  
@@ -119,14 +142,23 @@ const affichagePrixHtml = document.querySelector("#totalPrice");
 affichagePrixHtml.innerText = `${totalPrice}`;
 // console.log(affichagePrixHtml);
 
-///////////////////////////----changer les quantité influe sur le prix----------------------
+///////////////////////////----Change les quantite et influe sur les prix ----------------------
 /////////////////////////// PENSER A UTILISER CHANGE EN JS //////////////////////////////////
-const selectQuantity = document.querySelector(".itemQuantity");
 
+/*
+//for (e = 0; e < productCartJSON.length; e++) {
+const selectQuantity = document.querySelector(".itemQuantity");
 selectQuantity.addEventListener("change", (event) => {
   const result = document.querySelector("#totalPrice");
-  result.textContent = `${event.totalPrice}`;
+  localStorage.setItem("produitsPanier"), quantite_Produit;
+
+  // push une nouvelle quantite dans le localStorage avec Storage.setItem()
+  // Lorqu'on lui passe un nom de clé et une valeur, cette méthode ajoute cette clé et cette valeur dans le stockage. Si la clé existe déjà, elle met à jour la valeur.
+  // pour recharger la page ensuite => window.location.reload();
 });
+console.log(selectQuantity);
+//}
+*/
 /////////////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Gestion du bouton suprimer l'article------------------------------------
 
