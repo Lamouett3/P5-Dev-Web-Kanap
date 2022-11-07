@@ -179,7 +179,7 @@ function deleteItem() {
       let canapeId = e.target.getAttribute("canapeId");
       let canapeColor = e.target.getAttribute("canapeColor");
       const searchDeleteItem = productCart.find(
-        (element) => element.id == canapeId && element.couleur == canapeColor
+        (element) => element.id_Produit == canapeId && element.couleur_Produit == canapeColor
       );
       productCart = productCart.filter((item) => item != searchDeleteItem);
       localStorage.setItem("produitsPanier", JSON.stringify(productCart));
