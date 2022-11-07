@@ -1,214 +1,186 @@
-//------------------------La gestion panier-------------------------
-//--------------- Récuperation des produits dans le local storage-------------------
-const productCart = localStorage.getItem("produitsPanier");
+//AFFICHAGE DES PRODUITS DU PANIER
 
-//---------------------convertie la string en object
-const productCartJSON = JSON.parse(productCart);
-//console.log(productCartJSON);
+let productCart = JSON.parse(localStorage.getItem("produitsPanier"));
 
-//----------------------------Création des contenaire------------------------------
-const productContainer = document.createElement("article");
-const emplacementContenair = document.querySelector("#cart__items");
-//console.log(emplacementContenair);
+//GESTION DU PANIER VIDE ET PLEIN
 
-for (let i = 0; i < productCartJSON.length; i++) {
-  //-----------------CREATION DES CONTENAIRE ET DU CONTENU HTML
+if (productCart == null || productCart.length == 0) {
+  document.querySelector("h1").innerHTML += ` est vide`;
+} else {
+  document.querySelector("h1").innerHTML += ``;
 
-  const productContainer = document.createElement("article");
-  productContainer.className = "cart__item"; // `data-id="${productCartJSON[i].id_Produit}" data-color="${productCartJSON[i].couleur_Produit}`;
-  productContainer.dataset.id = `${productCartJSON[i].id_Produit}`;
-  productContainer.dataset.color = `${productCartJSON[i].couleur_Produit}`;
-  //console.log(productContainer);
+  //CREATION DES VARIABLES TABLEAUX QUI VONT CONTENIR LES QUANTITES ET PRIX DES PRODUITS
 
-  const productImage = document.createElement("div");
-  productImage.className = "cart__item__img";
-  const productImageUrl = document.createElement("img");
-  productImageUrl.src = productCartJSON[i].imageProduit;
-  // console.log(productImage);
+  let totalPrice = [];
+  let totalQuantity = [];
 
-  const productContent = document.createElement("div");
-  productContent.className = "cart__item__content";
-  //console.log(productContent);
+  //EXTRACTION DU LOCAL STORAGE POUR CREATION DE LA FICHE PRODUIT DANS LE PANIER
 
-  const productDescription = document.createElement("div");
-  productDescription.className = "cart__item__content__description";
-  //console.log(productDescription);
-  const productDescriptionTitle = document.createElement("h2");
-  productDescriptionTitle.innerText = `${productCartJSON[i].nomProduit}`;
-  const productDescriptionCouleur = document.createElement("p");
-  productDescriptionCouleur.innerHTML = `${productCartJSON[i].couleur_Produit}`;
-  const productDescriptionPrice = document.createElement("p");
-  productDescriptionPrice.innerHTML = `${productCartJSON[i].prixProduit} €`;
-  //console.log(productDescriptionTitle);
+  for (i = 0; i < productCart.length; i += 1) { 
+    document.querySelector("#cart__items").innerHTML += 
+    `<article class="cart__item" data-id="${productCart[i].id_Produit}">
+        <div class="cart__item__img">
+          <img src="${productCart[i].imageProduit}" alt="${productCart[i].altProduit}">
+        </div>
+        <div class="cart__item__content">
+          <div class="cart__item__content__titlePrice">
+            <h2>${productCart[i].nomProduit}</h2>
+            <p>${productCart[i].prixProduit * productCart[i].quantite_Produit} €</p>
+          </div>
+          <div class="cart__item__content__settings">
+            <div class="cart__item__content__settings__quantity">
+              <p>Couleur : ${productCart[i].couleur_Produit}</p>
+              <p>Qté : </p>
+              <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" canapeId="${productCart[i].id_Produit}" canapeColor="${productCart[i].couleur_Produit}" value="${productCart[i].quantite_Produit}">
+            </div>
+          <div class="cart__item__content__settings__delete">
+            <p class="deleteItem" canapeId="${productCart[i].id_Produit}" canapeColor="${productCart[i].couleur_Produit}">Supprimer</p>
+          </div>
+        </div>
+    </div>
+    </article>`;
+// data-id="{product-ID}"
+// data-color="{product-color}"
+    //TOTAL PANIER
 
-  const productSetting = document.createElement("div");
-  productSetting.className = "cart__item__content__settings";
+    //VARIABLES POUR CHANGER LE TYPE EN NOMBRE
 
-  //console.log(productSetting);
-  const productQuantity = document.createElement("div");
-  productQuantity.className = "cart__item__content__settings__quantity";
+    let quantityNumber = parseInt(productCart[i].quantite_Produit);
+    let priceNumber = parseInt(
+      productCart[i].prixProduit * productCart[i].quantite_Produit
+    );
 
-  const productQuantityText = document.createElement("p");
-  productQuantityText.innerText = "Qté :";
+    //PUSH DES NOMBRES DANS LES VARIABLES TABLEAUX
 
-  const productQuantityInput = document.createElement("input");
-  productQuantityInput.type = "number";
-  productQuantityInput.className = "itemQuantity"; // `name="itemQuantity" min="1" max="100" value="${productCartJSON[i].quantite_Produit}"`;
-  productQuantityInput.name = "itemQuantity";
-  productQuantityInput.min = "1";
-  productQuantityInput.max = "100";
-  productQuantityInput.value = `${productCartJSON[i].quantite_Produit}`;
+    totalQuantity.push(quantityNumber);
+    totalPrice.push(priceNumber);
+  }
 
-  const productSettingDelete = document.createElement("div");
-  productSettingDelete.className = "cart__item__content__settings__delete";
-  //console.log(productSettingDelete);
-  const productSettingDeleteText = document.createElement("p");
-  productSettingDeleteText.className = "deleteItem";
-  productSettingDeleteText.innerText = "Supprimer";
+  //ADDITION DES QUANTITES DES PRODUITS
 
-  //-----------------------Définit les element parents ----------------------
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  const totalQuantityResult = totalQuantity.reduce(reducer, 0);
 
-  productImage.appendChild(productImageUrl);
+  //ADDITION DES PRIX DES PRODUITS
 
-  productDescription.appendChild(productDescriptionTitle);
-  productDescription.appendChild(productDescriptionCouleur);
-  productDescription.appendChild(productDescriptionPrice);
+  const totalPriceResult = totalPrice.reduce(reducer, 0);
 
-  productContent.appendChild(productDescription);
-  productContent.appendChild(productSetting);
-
-  productQuantity.appendChild(productQuantityText);
-  productQuantity.appendChild(productQuantityInput);
-
-  productSetting.appendChild(productQuantity);
-  productSetting.appendChild(productSettingDelete);
-  //console.log(productSetting);
-  productSettingDelete.appendChild(productSettingDeleteText);
-
-  productContainer.appendChild(productImage);
-  productContainer.appendChild(productContent);
-  // productContainer.appendChild(productSetting);
-
-  emplacementContenair.appendChild(productContainer);
+  document.querySelector(
+    "#totalQuantity"
+  ).innerHTML += `${totalQuantityResult}`;
+  document.querySelector("#totalPrice").innerHTML += `${totalPriceResult}`;
 }
-///////////////////////////----Change les quantite et influe sur les prix ----------------------
 
-function modifQuantite() {
+//GERER LES INTERACTIONS AVEC LE FORMULAIRE A REMPLIR
+
+//PATTERN POUR VALIDATION DE LETTRES UNIQUEMENT
+
+let patternFirstName = document.querySelector("#firstName");
+patternFirstName.setAttribute("pattern", "[a-zA-Z-éèà]*");
+
+let patternLastName = document.querySelector("#lastName");
+patternLastName.setAttribute("pattern", "[a-zA-Z-éèà]*");
+
+let patternCity = document.querySelector("#city");
+patternCity.setAttribute("pattern", "[a-zA-Z-éèà]*");
+
+//RECUPERER LES ID POUR ENVOIE A L'API
+/*
+let getId = productCart.map((product) => product.id);
+
+//VALIDATION DES CHAMPS UTILISATEURS ET ENVOI DES DONNEES A L'API
+
+document
+  .querySelector(".cart__order__form__submit")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    let valid = true;
+    for (let input of document.querySelectorAll(
+      ".cart__order__form__question input"
+    )) {
+      valid &= input.reportValidity();
+      if (!valid) {
+        break;
+      }
+    }
+    if (valid) {
+      const result = fetch("http://localhost:3000/api/products/order", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contact: {
+            firstName: document.getElementById("firstName").value,
+            lastName: document.getElementById("lastName").value,
+            address: document.getElementById("address").value,
+            city: document.getElementById("city").value,
+            email: document.getElementById("email").value,
+          },
+          products: getId,
+        }),
+      });
+      result.then(async (answer) => {
+        try {
+          const data = await answer.json();
+          window.location.href = `confirmation.html?id=${data.orderId}`;
+          localStorage.clear();
+        } catch (e) {}
+      });
+    }
+  });
+*/
+/*MODIFICATION DE LA QUANTITE AVEC L'INPUT
+ *Crée un tableau d'input
+ *Cherche l'ID et la couleur du produit présent dans la classe .itemQuantity et le compare au produit présent dans productInlocalStorage
+ *Crée une nouvelle fiche produit avec la quantité mise à jour
+ *Met à jour ce produit dans productInLocalStorage
+ *Enregistre productInlocalStorage dans le localStorage et rafraichit la page
+ */
+
+function modifyQuantity() {
   let inputs = document.querySelectorAll(".itemQuantity");
   for (let input of Array.from(inputs)) {
     input.addEventListener("change", (event) => {
-      let canapeId = event.target.getAttribute("id_Produit");
-      let canapeColor = event.target.getAttribute("couleur_Produit");
-      const modif = productCartJSON.find(
+      let canapeId = event.target.getAttribute("canapeId");
+      let canapeColor = event.target.getAttribute("canapeColor");
+      const modify = productCart.find(
         (element) =>
-          element.id == productCartJSON.id_Produit &&
-          element.couleur == productCartJSON.couleur_Produit
+          element.id_Produit == canapeId &&
+          element.couleur_Produit == canapeColor
       );
-      modif.quantite_Produit = input.value;
-      //productCartJSON = modif;
-      localStorage.setItem("produitsPanier", JSON.stringify(productCartJSON));
+      modify.quantite_Produit = input.value;
+      productCart = modify;
+      localStorage.setItem("produitsPanier", JSON.stringify(productCart));
       window.location.href = "cart.html";
     });
   }
 }
 
-modifQuantite();
+modifyQuantity();
 
-////////////////////////////////////////////////////////////////
+/*SELECTION DE L'ELEMENT A SUPPRIMER DANS LE TABLEAU PRODUCTINLOCALSTORAGE
+ *Crée un tableau de boutons
+ *Cherche l'ID et la couleur du produit présent dans la classe .deleteItem et le compare au produit présent dans productInlocalStorage
+ *Filtre le produit trouvé et le supprime du tableau productInLocalStorage
+ *Enregistre productInlocalStorage dans le localStorage et rafraichit la page
+ */
 
-//------------------Mise en place du total articles-----------------
-
-/*  
-<div class="cart__price">
-    <p>Total (<span id="totalQuantity"><!-- 2 --></span> articles) : <span id="totalPrice"><!-- 84,00 --></span> €</p>
-</div> 
-*/
-
-let totalPriceCalcul = [];
-for (let p = 0; p < productCartJSON.length; p++) {
-  let prixProduitPanier = productCartJSON[p].prixProduit;
-
-  //----------------------Mettre le prix dans la variable totalPrice
-  totalPriceCalcul.push(prixProduitPanier);
+function deleteItem() {
+  let buttons = document.querySelectorAll(".deleteItem");
+  for (let button of Array.from(buttons)) {
+    button.addEventListener("click", (e) => {
+      let canapeId = e.target.getAttribute("canapeId");
+      let canapeColor = e.target.getAttribute("canapeColor");
+      const searchDeleteItem = productCart.find(
+        (element) => element.id == canapeId && element.couleur == canapeColor
+      );
+      productCart = productCart.filter((item) => item != searchDeleteItem);
+      localStorage.setItem("produitsPanier", JSON.stringify(productCart));
+      window.location.href = "cart.html";
+    });
+  }
 }
 
-//--------------------------Aditionner le prix du tableau dans la variable total price avec la fonction reduce
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
-
-const totalPrice = totalPriceCalcul.reduce(reducer, 0);
-//console.log(totalPrice);
-//------------------------Le code html ou le prix sera afficher
-const affichagePrixHtml = document.querySelector("#totalPrice");
-affichagePrixHtml.innerText = `${totalPrice}`;
-// console.log(affichagePrixHtml);
-
-///////////////////////////----Change les quantite et influe sur les prix ----------------------
-/////////////////////////// PENSER A UTILISER CHANGE EN JS //////////////////////////////////
-
-/*
-//for (e = 0; e < productCartJSON.length; e++) {
-const selectQuantity = document.querySelector(".itemQuantity");
-selectQuantity.addEventListener("change", (event) => {
-  const result = document.querySelector("#totalPrice");
-  localStorage.setItem("produitsPanier"), quantite_Produit;
-
-  // push une nouvelle quantite dans le localStorage avec Storage.setItem()
-  // Lorqu'on lui passe un nom de clé et une valeur, cette méthode ajoute cette clé et cette valeur dans le stockage. Si la clé existe déjà, elle met à jour la valeur.
-  // pour recharger la page ensuite => window.location.reload();
-});
-console.log(selectQuantity);
-//}
-*/
-/////////////////////////////////////////////////////////////////////////////////////////////
-//----------------------------Gestion du bouton suprimer l'article------------------------------------
-
-/*
-const boutonDelete = document.querySelector(".deleteItem");
-boutonDelete.addEventListener("click", function () {
-  window.localStorage.removeItem(productCart);
-});
-*/
-//-----------------------------RESSOURCES BLOC INSERTION HTML-------------------------------------
-/*
-<main class="limitedWidthBlockContainer">
-  <div class="cartAndFormContainer" id="cartAndFormContainer">
-          <h1>Votre panier</h1>
-          <section class="cart">
-            <section id="cart__items">
-
-             <!--  <article class="cart__item" data-id="{product-ID}" data-color="{product-color}">
-
-                <div class="cart__item__img">
-                  <img src="../images/product01.jpg" alt="Photographie d'un canapé">
-                </div>
-
-                <div class="cart__item__content">
-
-                  <div class="cart__item__content__description">
-                    <h2>Nom du produit</h2>
-                    <p>Vert</p>
-                    <p>42,00 €</p>
-                  </div>
-
-                  <div class="cart__item__content__settings">
-
-                    <div class="cart__item__content__settings__quantity">
-                      <p>Qté : </p>
-                      <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="42">
-                    </div>
-
-                    <div class="cart__item__content__settings__delete">
-                      <p class="deleteItem">Supprimer</p>
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </article> -->
-            </section>
-            <div class="cart__price">
-              <p>Total (<span id="totalQuantity"><!-- 2 --></span> articles) : <span id="totalPrice"><!-- 84,00 --></span> €</p>
-            </div>
-
-*/
+deleteItem();

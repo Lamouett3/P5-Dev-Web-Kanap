@@ -85,6 +85,7 @@ product.then((response) => {
         id_Produit: data._id,
         nomProduit: data.name,
         imageProduit: data.imageUrl,
+        altProduit: data.altTxt,
         prixProduit: data.price,
         quantite_Produit: document.getElementById("quantity").value, // recuperation des valeurs du menu deroulant pour le panier
         couleur_Produit: document.getElementById("colors").value, // penser a rentrer une fonction pour inclure les quantité du menu déroulant
