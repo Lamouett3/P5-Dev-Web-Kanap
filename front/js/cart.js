@@ -1,11 +1,5 @@
 //AFFICHAGE DES PRODUITS DU PANIER
-
-let productCartGET = localStorage.getItem("produitsPanier");
-
-//---------------------convertie la string en object
-let productCart = JSON.parse(productCartGET);
-//console.log(productCartJSON);
-
+let productCart = JSON.parse(localStorage.getItem("produitsPanier"));
 
 //GESTION DU PANIER VIDE ET PLEIN
 
@@ -145,18 +139,16 @@ document
  */
 
 function modifyQuantity() {
-  let inputs = document.querySelectorAll(".itemQuantity");
+  let inputs = document.querySelectorAll('.itemQuantity');
   for (let input of Array.from(inputs)) {
     input.addEventListener("change", (event) => {
       let canapeId = event.target.getAttribute("canapeId");
       let canapeColor = event.target.getAttribute("canapeColor");
       const modify = productCart.find(
-        (element) =>
-          element.id_Produit == canapeId &&
-          element.couleur_Produit == canapeColor
-      );
+        (element) => element.id_Produit == canapeId && element.couleur_Produit == canapeColor
+        );
       modify.quantite_Produit = input.value;
-      productCart = modify;
+      productCart = productCart.filter(item => item = modify);
       localStorage.setItem("produitsPanier", JSON.stringify(productCart));
       window.location.href = "cart.html";
     });
@@ -179,7 +171,7 @@ function deleteItem() {
       let canapeId = e.target.getAttribute("canapeId");
       let canapeColor = e.target.getAttribute("canapeColor");
       const searchDeleteItem = productCart.find(
-        (element) => element.id_Produit == canapeId && element.couleur_Produit == canapeColor
+      (element) => element.id_Produit == canapeId && element.couleur_Produit == canapeColor
       );
       productCart = productCart.filter((item) => item != searchDeleteItem);
       localStorage.setItem("produitsPanier", JSON.stringify(productCart));
