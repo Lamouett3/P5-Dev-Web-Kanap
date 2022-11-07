@@ -1,6 +1,11 @@
 //AFFICHAGE DES PRODUITS DU PANIER
 
-let productCart = JSON.parse(localStorage.getItem("produitsPanier"));
+let productCartGET = localStorage.getItem("produitsPanier");
+
+//---------------------convertie la string en object
+let productCart = JSON.parse(productCartGET);
+//console.log(productCartJSON);
+
 
 //GESTION DU PANIER VIDE ET PLEIN
 
@@ -83,9 +88,9 @@ patternLastName.setAttribute("pattern", "[a-zA-Z-éèà]*");
 
 let patternCity = document.querySelector("#city");
 patternCity.setAttribute("pattern", "[a-zA-Z-éèà]*");
-
-//RECUPERER LES ID POUR ENVOIE A L'API
 /*
+//RECUPERER LES ID POUR ENVOIE A L'API
+
 let getId = productCart.map((product) => product.id);
 
 //VALIDATION DES CHAMPS UTILISATEURS ET ENVOI DES DONNEES A L'API
@@ -157,7 +162,7 @@ function modifyQuantity() {
     });
   }
 }
-
+// remplace totalement le produit dans le panier au lieu de changer l'objet du tableau 
 modifyQuantity();
 
 /*SELECTION DE L'ELEMENT A SUPPRIMER DANS LE TABLEAU PRODUCTINLOCALSTORAGE

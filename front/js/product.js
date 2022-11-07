@@ -87,24 +87,42 @@ product.then((response) => {
         imageProduit: data.imageUrl,
         altProduit: data.altTxt,
         prixProduit: data.price,
-        quantite_Produit: document.getElementById("quantity").value, // recuperation des valeurs du menu deroulant pour le panier
+        quantite_Produit: parseInt(document.getElementById("quantity").value), // recuperation des valeurs du menu deroulant pour le panier
         couleur_Produit: document.getElementById("colors").value, // penser a rentrer une fonction pour inclure les quantité du menu déroulant
       };
 
       //--------------------Stocker la recuperation des valeurs du formulaire dans le local storage
 
-      let produitLocalStrorage = JSON.parse(
-        localStorage.getItem("produitsPanier")
+      let produitLocalStrorage = JSON.parse(localStorage.getItem("produitsPanier")
       );
 
-      // s'il y a deja des produits enregistrer dans le local storage
-      if (produitLocalStrorage) {
+   // s'il y a deja des produits enregistrer dans le local storage
+      if (produitLocalStrorage === null) {
+        produitLocalStrorage = [];
         produitLocalStrorage.push(optionProduit);
-        localStorage.setItem(
-          "produitsPanier",
-          JSON.stringify(produitLocalStrorage)
+        localStorage.setItem("produitsPanier", JSON.stringify(produitLocalStrorage)
         );
       }
+      else {
+        const found = produitLocalStrorage.find(element => element.id_Produit == optionProduit.id_Produit && element.couleur_Produit == optionProduit.couleur_Produit);
+        
+        if (found == undefined) {
+            produitLocalStrorage.push(optionProduit);
+            localStorage.setItem("produitsPanier", JSON.stringify(produitLocalStrorage));
+
+//SI PRODUIT AVEC MEME ID ET COULEUR AUGMENTER LA QUANTITE
+
+        } else {
+            found.quantite_Produit += optionProduit.quantite_Produit;
+            localStorage.setItem("produitsPanier", JSON.stringify(produitLocalStrorage));
+        }
+    }   
+});
+});
+});
+
+
+/*
       //s'il n'y a pas de produit enregistré dans le local storage
       else {
         produitLocalStrorage = [];
@@ -115,9 +133,8 @@ product.then((response) => {
           JSON.stringify(produitLocalStrorage)
         );
       }
-    });
-  });
-});
+
+*/
 /*
 //--------- setion pour eviter les doublon d'article et changer uniquement la quantite
 for (
