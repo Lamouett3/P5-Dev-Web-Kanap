@@ -82,6 +82,8 @@ patternLastName.setAttribute("pattern", "[a-zA-Z-éèà]*");
 
 let patternCity = document.querySelector("#city");
 patternCity.setAttribute("pattern", "[a-zA-Z-éèà]*");
+
+
 /*
 //RECUPERER LES ID POUR ENVOIE A L'API
 
@@ -130,6 +132,8 @@ document
     }
   });
 */
+
+
 /*MODIFICATION DE LA QUANTITE AVEC L'INPUT
  *Crée un tableau d'input
  *Cherche l'ID et la couleur du produit présent dans la classe .itemQuantity et le compare au produit présent dans productInlocalStorage
@@ -154,7 +158,7 @@ function modifyQuantity() {
     });
   }
 }
-// remplace totalement le produit dans le panier au lieu de changer l'objet du tableau 
+
 modifyQuantity();
 
 /*SELECTION DE L'ELEMENT A SUPPRIMER DANS LE TABLEAU PRODUCTINLOCALSTORAGE
