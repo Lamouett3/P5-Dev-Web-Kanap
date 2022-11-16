@@ -84,10 +84,8 @@ let patternCity = document.querySelector("#city");
 patternCity.setAttribute("pattern", "[a-zA-Z-éèà]*");
 
 
-/*
 //RECUPERER LES ID POUR ENVOIE A L'API
-
-let getId = productCart.map((product) => product.id);
+let getId = productCart.map((product) => product.id_Produit);
 
 //VALIDATION DES CHAMPS UTILISATEURS ET ENVOI DES DONNEES A L'API
 
@@ -131,8 +129,6 @@ document
       });
     }
   });
-*/
-
 
 /*MODIFICATION DE LA QUANTITE AVEC L'INPUT
  *Crée un tableau d'input
