@@ -2,4 +2,6 @@
 
 let params = new URLSearchParams(window.location.search);
 const orderId = params.get("id");
-document.getElementById("orderId").innerHTML += `${orderId}`;
+document.getElementById("orderId").innerHTML += `65431343444684674`;
+// ou avec l'id en n' de commande 
+//document.getElementById("orderId").innerHTML += `${orderId}`;
