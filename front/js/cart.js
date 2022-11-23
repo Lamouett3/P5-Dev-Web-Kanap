@@ -40,8 +40,8 @@ if (productCart == null || productCart.length == 0) {
     </article>`;
 // data-id="{product-ID}"
 // data-color="{product-color}"
-    //TOTAL PANIER
 
+    //TOTAL PANIER
     //VARIABLES POUR CHANGER LE TYPE EN NOMBRE
 
     let quantityNumber = parseInt(productCart[i].quantite_Produit);
@@ -132,10 +132,10 @@ document
 
 /*MODIFICATION DE LA QUANTITE AVEC L'INPUT
  *Crée un tableau d'input
- *Cherche l'ID et la couleur du produit présent dans la classe .itemQuantity et le compare au produit présent dans productInlocalStorage
+ *Cherche l'ID et la couleur du produit présent dans la classe .itemQuantity et le compare au produit présent dans productCart
  *Crée une nouvelle fiche produit avec la quantité mise à jour
  *Met à jour ce produit dans productInLocalStorage
- *Enregistre productInlocalStorage dans le localStorage et rafraichit la page
+ *Enregistre productCart dans le localStorage et rafraichit la page
  */
 
 function modifyQuantity() {
@@ -159,9 +159,9 @@ modifyQuantity();
 
 /*SELECTION DE L'ELEMENT A SUPPRIMER DANS LE TABLEAU PRODUCTINLOCALSTORAGE
  *Crée un tableau de boutons
- *Cherche l'ID et la couleur du produit présent dans la classe .deleteItem et le compare au produit présent dans productInlocalStorage
- *Filtre le produit trouvé et le supprime du tableau productInLocalStorage
- *Enregistre productInlocalStorage dans le localStorage et rafraichit la page
+ *Cherche l'ID et la couleur du produit présent dans la classe .deleteItem et le compare au produit présent dans productCart
+ *Filtre le produit trouvé et le supprime du tableau productCart
+ *Enregistre productCart dans le localStorage et rafraichit la page
  */
 
 function deleteItem() {
